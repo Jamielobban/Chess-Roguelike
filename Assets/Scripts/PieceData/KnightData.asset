@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc159c44669de64f90606c74d4eafb6, type: 3}
   m_Name: KnightData
   m_EditorClassIdentifier: Assembly-CSharp::PieceData
-  displayName: Piece
-  sprite: {fileID: 0}
+  displayName: Knight
+  sprite: {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
   maxHP: 1
   attack: 1
-  moveRange: 1
-  isEnemy: 0
+  moveRules:
+  - {fileID: 11400000, guid: 3ac7608ddcdcbe94fb320315d0400d1e, type: 2}
+  baseModifiers: []
+  tags: []

@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 4}
   board: {fileID: 727419973}
 --- !u!61 &6418495
@@ -305,6 +306,8 @@ MonoBehaviour:
   factory: {fileID: 9562898}
   whitePawn: {fileID: 11400000, guid: e415f6e912c60b546b9b1217a4eb1f9d, type: 2}
   blackPawn: {fileID: 11400000, guid: e415f6e912c60b546b9b1217a4eb1f9d, type: 2}
+  knightPiece: {fileID: 11400000, guid: 23101a6226b957045b63719b4bdb9f37, type: 2}
+  rookPiece: {fileID: 11400000, guid: 747409c510c503048b7b4f1025be5d54, type: 2}
 --- !u!114 &9562898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 6}
   board: {fileID: 727419973}
 --- !u!61 &59428889
@@ -531,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 2}
   board: {fileID: 727419973}
 --- !u!61 &99863057
@@ -683,6 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 4}
   board: {fileID: 727419973}
 --- !u!61 &125071197
@@ -835,6 +841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 7}
   board: {fileID: 727419973}
 --- !u!61 &144029042
@@ -987,6 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 3}
   board: {fileID: 727419973}
 --- !u!61 &144451226
@@ -1139,6 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 6}
   board: {fileID: 727419973}
 --- !u!61 &153053650
@@ -1291,6 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 2}
   board: {fileID: 727419973}
 --- !u!61 &230259453
@@ -1443,6 +1453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 7}
   board: {fileID: 727419973}
 --- !u!61 &289767503
@@ -1595,6 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 1}
   board: {fileID: 727419973}
 --- !u!61 &377578236
@@ -1747,6 +1759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 1}
   board: {fileID: 727419973}
 --- !u!61 &442743010
@@ -1899,6 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 2}
   board: {fileID: 727419973}
 --- !u!61 &493769295
@@ -2051,6 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 5}
   board: {fileID: 727419973}
 --- !u!61 &507666933
@@ -2340,6 +2355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 0}
   board: {fileID: 727419973}
 --- !u!61 &534025949
@@ -2492,6 +2508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 3}
   board: {fileID: 727419973}
 --- !u!61 &593064910
@@ -2819,6 +2836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 3}
   board: {fileID: 727419973}
 --- !u!61 &741770852
@@ -2971,6 +2989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 6}
   board: {fileID: 727419973}
 --- !u!61 &746883921
@@ -3123,6 +3142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 1}
   board: {fileID: 727419973}
 --- !u!61 &758675301
@@ -3275,6 +3295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 5}
   board: {fileID: 727419973}
 --- !u!61 &828930523
@@ -3477,6 +3498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 7}
   board: {fileID: 727419973}
 --- !u!61 &904860801
@@ -3629,6 +3651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 5}
   board: {fileID: 727419973}
 --- !u!61 &1129000750
@@ -3781,6 +3804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 6}
   board: {fileID: 727419973}
 --- !u!61 &1142872537
@@ -4023,6 +4047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 5}
   board: {fileID: 727419973}
 --- !u!61 &1268585210
@@ -4175,6 +4200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 4}
   board: {fileID: 727419973}
 --- !u!61 &1435994898
@@ -4327,6 +4353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 3, y: 7}
   board: {fileID: 727419973}
 --- !u!61 &1442190292
@@ -4479,6 +4506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 4}
   board: {fileID: 727419973}
 --- !u!61 &1490501057
@@ -4631,6 +4659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 0}
   board: {fileID: 727419973}
 --- !u!61 &1536307214
@@ -4783,6 +4812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 0}
   board: {fileID: 727419973}
 --- !u!61 &1643563312
@@ -4935,6 +4965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 2}
   board: {fileID: 727419973}
 --- !u!61 &1655351508
@@ -5176,6 +5207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 3}
   board: {fileID: 727419973}
 --- !u!61 &1766317263
@@ -5328,6 +5360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 1, y: 1}
   board: {fileID: 727419973}
 --- !u!61 &1804641944
@@ -5480,6 +5513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 5}
   board: {fileID: 727419973}
 --- !u!61 &1813413214
@@ -5632,6 +5666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 2}
   board: {fileID: 727419973}
 --- !u!61 &1834755667
@@ -5784,6 +5819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 6}
   board: {fileID: 727419973}
 --- !u!61 &1838696250
@@ -5936,6 +5972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 7}
   board: {fileID: 727419973}
 --- !u!61 &1867042033
@@ -6088,6 +6125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 0}
   board: {fileID: 727419973}
 --- !u!61 &1899588859
@@ -6240,6 +6278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 2, y: 0}
   board: {fileID: 727419973}
 --- !u!61 &1906192318
@@ -6392,6 +6431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 3}
   board: {fileID: 727419973}
 --- !u!61 &1957657299
@@ -6544,6 +6584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 0, y: 1}
   board: {fileID: 727419973}
 --- !u!61 &1989908407
@@ -6696,6 +6737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39bcde15d16bcb4791273fd7b7ec0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile2D
+  data: {fileID: 0}
   _coord: {x: 4, y: 4}
   board: {fileID: 727419973}
 --- !u!61 &1992172936

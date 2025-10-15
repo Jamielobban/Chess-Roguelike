@@ -4,15 +4,16 @@ using UnityEngine;
 public class Picker2D : MonoBehaviour
 {
     public Camera cam;
-    public InputManager input;              // fires OnPrimaryClick
-    public BoardRuntime runtime;            // optional: assign, else auto-find
-    public BoardBuilder2D builder;          // optional: assign, else auto-find
+    public InputManager input;
+    public BoardRuntime runtime;     // auto-grabbed if left empty
+    public BoardBuilder2D builder;   // auto-grabbed if left empty
 
     public Color selectColor = new(1f, 0.95f, 0.2f, 1f);
     public Color moveColor   = new(0.2f, 0.9f, 0.3f, 1f);
 
     private Piece _selected;
     private readonly List<Tile2D> _lit = new();
+    private readonly HashSet<Vector2Int> _legal = new();
 
     void Awake()
     {
@@ -20,94 +21,101 @@ public class Picker2D : MonoBehaviour
         if (!runtime) runtime = BoardRuntime.Instance;
         if (!builder) builder = runtime ? runtime.builder : FindFirstObjectByType<BoardBuilder2D>();
 
-        if (runtime == null)
-            Debug.LogError("Picker2D: No BoardRuntime found. Add BoardRuntime to scene.");
-        if (builder == null)
-            Debug.LogError("Picker2D: No BoardBuilder2D found. Add/assign a builder.");
+        if (!runtime) Debug.LogError("Picker2D: No BoardRuntime found.");
+        if (!builder) Debug.LogError("Picker2D: No BoardBuilder2D found.");
     }
 
-    void OnEnable()
-    {
-        if (input != null) input.OnPrimaryClick += HandlePrimaryClick;
-    }
-
-    void OnDisable()
-    {
-        if (input != null) input.OnPrimaryClick -= HandlePrimaryClick;
-    }
+    void OnEnable()  { if (input) input.OnPrimaryClick += HandlePrimaryClick; }
+    void OnDisable() { if (input) input.OnPrimaryClick -= HandlePrimaryClick; }
 
     void HandlePrimaryClick(Vector2 screenPos)
     {
-        //Debug.Log("hello1");
-        if (cam == null || builder == null) return;
-       // Debug.Log("hello3");
+        if (!cam || !builder) return;
 
-        // Convert screen → world
-        var world = cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f));
-
-        // First try a raycast
-        var hit = Physics2D.Raycast(world, Vector2.zero);
-
-        Collider2D col = hit.collider;
-        if (col == null)
-        {
-            // fallback: maybe collider is trigger-only
-            col = Physics2D.OverlapPoint(world);
-            if (col == null) return; // nothing hit
-        }
+        float zDist = Mathf.Abs(builder.transform.position.z - cam.transform.position.z);
+        Vector3 world = cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, zDist));
+        Collider2D col = Physics2D.OverlapPoint(world);
+        if (!col) return;
 
         var tile = col.GetComponent<Tile2D>();
-        Debug.Log(tile.gameObject.name);
         if (!tile) return;
 
         OnTileClicked(tile);
     }
 
-
     void OnTileClicked(Tile2D t)
     {
-        if (runtime == null || builder == null) return;
+        if (!runtime || !builder) return;
 
-        Debug.Log($"Clicked coord {t.coord}");
         var pieceAt = runtime.GetPiece(t.coord);
         bool hasPiece = pieceAt != null;
-        Debug.Log(pieceAt ? $"Found piece {pieceAt.name} at {t.coord}" : "No piece in runtime grid at coord");
 
-        Debug.Log(pieceAt);
+        // Nothing selected yet → select piece if any
         if (_selected == null)
         {
             if (hasPiece) Select(pieceAt);
-            return; // empty tile with no selection -> noop
-        }
-
-        if (hasPiece)
-        {
-            Select(pieceAt); // reselect another piece
             return;
         }
 
-        // empty tile and we have a selection -> move
-        runtime.MovePiece(_selected, t.coord);
-        ClearSelection();
+        // Clicked another piece → reselect
+        if (hasPiece)
+        {
+            Select(pieceAt);
+            return;
+        }
+
+        // Empty tile → only move if legal
+        if (_legal.Contains(t.coord))
+        {
+            RuleEngine.FireLeaveEnter(_selected, runtime, _selected.GridPos, t.coord);
+            runtime.MovePiece(_selected, t.coord);
+            ClearSelection();
+        }
+        else
+        {
+            // optional: deselect if clicked outside
+            // ClearSelection();
+        }
     }
 
     void Select(Piece p)
     {
-        if (p == null || builder == null || runtime == null) return;
+        if (!p || !builder || !runtime) return;
 
         ClearSelection();
         _selected = p;
 
         // highlight selected tile
         var selTile = builder.tiles[p.GridPos.x, p.GridPos.y];
-        selTile.SetHighlight(selectColor);
-        _lit.Add(selTile);
+        if (selTile)
+        {
+            selTile.SetHighlight(selectColor);
+            _lit.Add(selTile);
+        }
+
+        // ======= LEGAL MOVE COMPUTATION =======
+        _legal.Clear();
+        var legalMoves = RuleEngine.GetLegalMoves(p, runtime);  // ← this uses all your MoveRules/Modifiers system
+        foreach (var c in legalMoves)
+        {
+            if (!runtime.InBounds(c)) continue;
+            _legal.Add(c);
+
+            var tt = builder.tiles[c.x, c.y];
+            if (tt)
+            {
+                tt.SetHighlight(moveColor);
+                _lit.Add(tt);
+            }
+        }
+        // ======================================
     }
 
     void ClearSelection()
     {
-        foreach (var t in _lit) t.ClearHighlight();
+        foreach (var t in _lit) if (t) t.ClearHighlight();
         _lit.Clear();
+        _legal.Clear();
         _selected = null;
     }
 }

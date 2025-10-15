@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Tile2D : MonoBehaviour
 {
+    public TileData data;
     [SerializeField] private Vector2Int _coord; // stays serialized in scene
     public Vector2Int coord => _coord;
 

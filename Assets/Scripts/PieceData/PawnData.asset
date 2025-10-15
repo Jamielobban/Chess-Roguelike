@@ -17,5 +17,7 @@ MonoBehaviour:
   tint: {r: 1, g: 0, b: 0, a: 1}
   maxHP: 1
   attack: 1
-  moveRange: 1
-  isEnemy: 0
+  moveRules:
+  - {fileID: 11400000, guid: c42ef4c42fe80a243b31097acd8479c1, type: 2}
+  baseModifiers: []
+  tags: []
