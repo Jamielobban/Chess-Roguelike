@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f7e3ba747c1ae458a889d44512e180, type: 3}
-  m_Name: RookRays
-  m_EditorClassIdentifier: Assembly-CSharp::RookRays
+  m_Script: {fileID: 11500000, guid: ea5bc45a908649149931411a158a0eb6, type: 3}
+  m_Name: PawnForward
+  m_EditorClassIdentifier: Assembly-CSharp::PawnForward
+  dir: 1
+  captureDiagonals: 1

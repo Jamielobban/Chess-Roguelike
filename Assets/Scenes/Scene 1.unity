@@ -28705,7 +28705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9566c893509954192faca23a63799b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PieceFactory
-  piecePrefab: {fileID: 3563396489797393991, guid: 2497ea29846e4ea48a5f12697756066a, type: 3}
+  piecePrefab: {fileID: 8073567032735525133, guid: 8025815ac6fcfb3488054ca0df9db4cd, type: 3}
 --- !u!4 &1367876346
 Transform:
   m_ObjectHideFlags: 0
