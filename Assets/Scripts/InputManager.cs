@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 
     public event Action<Vector2> OnPrimaryClick;
 
-    InputSystem_Actions _actions;
+    public InputSystem_Actions _actions;
 
     void Awake()
     {
@@ -33,5 +33,13 @@ public class InputManager : MonoBehaviour
     {
         var pos = _actions.Player.Point.ReadValue<Vector2>();
         OnPrimaryClick?.Invoke(pos);
+    }
+
+    public Vector2 MousePosition
+    {
+        get
+        {
+            return Mouse.current?.position.ReadValue() ?? Vector2.zero;
+        }
     }
 }
