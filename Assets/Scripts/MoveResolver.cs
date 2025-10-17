@@ -3,27 +3,53 @@ using UnityEngine;
 public static class MoveResolver
 {
     /// <summary>
-    /// Executes a move already validated by MoveGenerator.
+    /// Tries to execute a move: checks energy, spends it, fires tile events, captures, and moves.
+    /// Returns true if the move was performed.
     /// </summary>
-    public static void ExecuteMove(Piece piece, Vector2Int dest, BoardRuntime board)
+    public static bool TryExecuteMove(Piece piece, Vector2Int dest, int cost, BoardRuntime board, bool spendEnergy = true)
     {
-        if (piece == null || board == null) return;
+        if (piece == null || board == null) return false;
+
+        // Notify start (for intent SFX, previews, etc.)
+        GameSignals.RaiseMoveStarted(piece, dest);
+
+        // Energy check & spend
+        if (spendEnergy)
+        {
+            var tm = TurnManager.Instance;
+            if (tm == null)
+            {
+                Debug.LogError("MoveResolver: TurnManager.Instance is null.");
+                return false;
+            }
+            if (!tm.TrySpend(cost))
+            {
+                GameSignals.RaiseMoveFailedInsufficientEnergy(piece, dest, cost);
+                return false;
+            }
+        }
 
         var from = piece.GridPos;
-        var targetPiece = board.GetPiece(dest);
+        var targetPiece = board.GetPiece(dest) as Piece;
 
-        // capture (optional: play animation, add score, etc.)
+        // Tile leave/enter hooks (before we actually move)
+        FireTileEvents(piece, board, from, dest);
+
+        // Capture (emit before destruction so listeners can read victim data)
         if (targetPiece != null && targetPiece.Team != piece.Team)
         {
+            GameSignals.RaisePieceCaptured(piece, targetPiece, dest);
             Object.Destroy(targetPiece.gameObject);
             board.pieces[dest.x, dest.y] = null;
         }
 
-        // fire tile exit/enter hooks
-        FireTileEvents(piece, board, from, dest);
-
-        // move
+        // Move on the board (updates grid + transform)
         board.MovePiece(piece, dest);
+
+        // Final event after state change
+        GameSignals.RaisePieceMoved(piece, from, dest, cost);
+
+        return true;
     }
 
     static void FireTileEvents(Piece piece, BoardRuntime board, Vector2Int from, Vector2Int to)

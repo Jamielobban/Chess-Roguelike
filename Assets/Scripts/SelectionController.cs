@@ -59,18 +59,16 @@ public class SelectionController : MonoBehaviour
         // clicked empty tile → move only if legal & affordable
         if (_legal.TryGetValue(coord, out var opt))
         {
-            if (turns.TrySpend(opt.cost))
+            bool ok = MoveResolver.TryExecuteMove(_selected, coord, opt.cost, runtime, spendEnergy: true);
+            if (ok)
             {
-                MoveResolver.ExecuteMove(_selected, coord, runtime);
-
-                // keep playing in the same turn: reselect same piece to refresh options
                 var keep = _selected;
                 ClearSelection();
-                Select(keep);
+                Select(keep); // refresh options with new position/energy
             }
             else
             {
-                // Not enough energy (optional: UI feedback)
+                // optional feedback: not enough energy, etc.
             }
         }
         else
