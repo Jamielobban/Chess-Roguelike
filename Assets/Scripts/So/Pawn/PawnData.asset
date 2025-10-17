@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc159c44669de64f90606c74d4eafb6, type: 3}
   m_Name: PawnData
   m_EditorClassIdentifier: Assembly-CSharp::PieceData
-  displayName: Piece
+  displayName: Pawn
   sprite: {fileID: -3168733581550749585, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
   tint: {r: 1, g: 0, b: 0, a: 1}
   maxHP: 1

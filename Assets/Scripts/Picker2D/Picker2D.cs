@@ -15,6 +15,11 @@ public class Picker2D : MonoBehaviour
     private readonly List<Tile2D> _lit = new();
     private readonly HashSet<Vector2Int> _legal = new();
 
+
+    public LayerMask tileMask;
+    Tile2D _hover;
+    Vector2 _lastMouse;
+
     void Awake()
     {
         if (!cam) cam = Camera.main;
@@ -28,6 +33,23 @@ public class Picker2D : MonoBehaviour
     void OnEnable()  { if (input) input.OnPrimaryClick += HandlePrimaryClick; }
     void OnDisable() { if (input) input.OnPrimaryClick -= HandlePrimaryClick; }
 
+    void Update()
+    {
+          if (_lastMouse == InputManager.Instance.MousePosition && _hover) return;
+        _lastMouse = InputManager.Instance.MousePosition;;
+            
+        float zDist = Mathf.Abs(builder.transform.position.z - cam.transform.position.z);
+        Vector3 world = cam.ScreenToWorldPoint(new Vector3(_lastMouse.x, _lastMouse.y, zDist));
+        var col = Physics2D.OverlapPoint(world, tileMask);
+
+        var tile = col ? col.GetComponent<Tile2D>() : null;
+        if (tile == _hover) return;
+
+        if (_hover) //_hover.ClearHover();         // un-hover old
+            _hover = tile;
+        Debug.Log(tile.coord);
+        //_hover.SetHover();          // hover new
+    }
     void HandlePrimaryClick(Vector2 screenPos)
     {
         if (!cam || !builder) return;
