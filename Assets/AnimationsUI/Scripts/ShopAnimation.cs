@@ -19,20 +19,8 @@ public class ShopAnimation : MonoBehaviour
 
     public void SetAnimation()
     {
-        if(current)
-        {
-            current = false;
 
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("In"))
                 anim.CrossFade("Out",0);
-        }
-        else
-		{
-			current = true;
 
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Out") || anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-				anim.CrossFade("In", 0);
-
-		}
 	}
 }
