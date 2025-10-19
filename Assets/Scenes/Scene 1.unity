@@ -8835,7 +8835,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 414023743}
-  - component: {fileID: 414023742}
+  - component: {fileID: 414023744}
+  - component: {fileID: 414023745}
+  - component: {fileID: 414023747}
+  - component: {fileID: 414023746}
   m_Layer: 0
   m_Name: Picker2D
   m_TagString: Untagged
@@ -8843,27 +8846,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &414023742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414023741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71ad55dad165f01488729954bbba9bdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Picker2D
-  cam: {fileID: 0}
-  input: {fileID: 532070454}
-  runtime: {fileID: 1481523819}
-  builder: {fileID: 1021582813}
-  selectColor: {r: 1, g: 0.95, b: 0.2, a: 1}
-  moveColor: {r: 0.2, g: 0.9, b: 0.3, a: 1}
-  tileMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!4 &414023743
 Transform:
   m_ObjectHideFlags: 0
@@ -8879,6 +8861,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &414023744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414023741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f035f57d3410c489cae5faaa8e2433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileInputController
+  cam: {fileID: 870662191}
+  input: {fileID: 532070454}
+  builder: {fileID: 1021582813}
+--- !u!114 &414023745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414023741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f2283dd337b244a981b6786aa35da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileHighlighter
+  builder: {fileID: 1021582813}
+  selectedColor: {r: 1, g: 0.95, b: 0.2, a: 1}
+  moveColor: {r: 0.2, g: 0.9, b: 0.3, a: 1}
+  captureColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
+  blockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &414023746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414023741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8af7d6309befab4ab361bd18be81b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  maxEnergyPerTurn: 666
+  startingTeam: 0
+--- !u!114 &414023747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414023741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43d034006891244394083d17bdae496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectionController
+  inputCtrl: {fileID: 414023744}
+  highlighter: {fileID: 414023745}
+  runtime: {fileID: 1481523819}
+  builder: {fileID: 1021582813}
+  turns: {fileID: 414023746}
 --- !u!224 &422140632 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 116601329065333277, guid: 43e0feb1371fcd146af5d406cb355cc2, type: 3}

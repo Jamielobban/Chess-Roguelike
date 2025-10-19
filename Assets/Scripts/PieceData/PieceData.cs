@@ -7,6 +7,7 @@ public class PieceData : ScriptableObject
     public string displayName;
     public Sprite sprite;
     public Color tint = Color.white;
+    public Team team = Team.White;
 
     [Header("Base stats")]
     public int maxHP = 1;

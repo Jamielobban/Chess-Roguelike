@@ -8,6 +8,7 @@ public class Piece : MonoBehaviour
     public Vector2Int GridPos;
     public int HP { get; private set; }
     public List<Modifier> runtimeMods = new(); // stack changes over time
+    public Team Team => data.team;
 
     SpriteRenderer _sr;
 
