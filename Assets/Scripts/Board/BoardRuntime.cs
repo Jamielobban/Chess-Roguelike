@@ -28,7 +28,7 @@ public class BoardRuntime : MonoBehaviour
         {
             Debug.LogError("BoardRuntime: No BoardBuilder2D found in scene.");
         }
-          Debug.Log($"BoardRuntime Awake. cols={builder?.cols}, rows={builder?.rows}");
+          //Debug.Log($"BoardRuntime Awake. cols={builder?.cols}, rows={builder?.rows}");
     }
 
     public bool InBounds(Vector2Int c)
@@ -51,7 +51,7 @@ public class BoardRuntime : MonoBehaviour
         pieces[c.x, c.y] = p;
         p.GridPos = c;
         p.transform.position = builder.GridToWorld(c);
-        Debug.Log($"PlacePiece {p.name} -> {c}");
+        //Debug.Log($"PlacePiece {p.name} -> {c}");
     }
 
     public void MovePiece(Piece p, Vector2Int to)

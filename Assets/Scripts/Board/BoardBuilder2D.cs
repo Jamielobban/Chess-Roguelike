@@ -15,7 +15,7 @@ public class BoardBuilder2D : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(transform.childCount);
+        //Debug.Log(transform.childCount);
         // only build if nothing exists
         if (transform.childCount == 0)
             Build();

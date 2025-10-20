@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1000)]  // <-- ensures this Awake runs very early
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance { get; private set; }
@@ -13,8 +14,8 @@ public class TurnManager : MonoBehaviour
     public Team currentTeam { get; private set; }
     public int energy { get; private set; }
 
-    public event Action<Team,int,int> OnTurnStarted;   // (team, energy, max)
-    public event Action<int,int> OnEnergyChanged;      // (energy, max)
+    public event Action<Team, int, int> OnTurnStarted;   // (team, energy, max)
+    public event Action<int, int> OnEnergyChanged;      // (energy, max)
     public event Action<Team> OnTurnEnded;
 
     void Awake()
@@ -27,6 +28,7 @@ public class TurnManager : MonoBehaviour
 
     public void BeginNewTurn(Team team)
     {
+        Debug.Log(team);
         currentTeam = team;
         energy = maxEnergyPerTurn;
         OnTurnStarted?.Invoke(currentTeam, energy, maxEnergyPerTurn);
