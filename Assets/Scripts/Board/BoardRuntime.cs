@@ -5,7 +5,7 @@ public class BoardRuntime : MonoBehaviour
     public static BoardRuntime Instance { get; private set; }
 
     [Header("Refs")]
-    public BoardBuilder2D builder;   // assign from scene or auto-find
+    public BoardBuilder2D builder;  
 
     public Piece[,] pieces;
 
@@ -21,7 +21,7 @@ public class BoardRuntime : MonoBehaviour
         if (!builder) builder = FindFirstObjectByType<BoardBuilder2D>();
         if (builder != null)
         {
-            //builder.Build(); // ensure tiles exist
+            //builder.Build(); 
             pieces = new Piece[builder.cols, builder.rows];
         }
         else

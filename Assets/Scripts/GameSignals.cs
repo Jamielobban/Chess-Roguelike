@@ -15,6 +15,8 @@ public static class GameSignals
     /// <summary>Emitted after a successful move and board state updated.</summary>
     public static event Action<Piece, Vector2Int, Vector2Int, int> OnPieceMoved;
 
+    public static event Action<int,int> OnPreviewEnergyChanged; // (preview, max)
+
     // Helper “raise” methods (optional)
     public static void RaiseMoveStarted(Piece p, Vector2Int to) =>
         OnMoveStarted?.Invoke(p, to);
@@ -27,4 +29,6 @@ public static class GameSignals
 
     public static void RaisePieceMoved(Piece p, Vector2Int from, Vector2Int to, int cost) =>
         OnPieceMoved?.Invoke(p, from, to, cost);
+    public static void RaisePreviewEnergyChanged(int preview, int max)
+        => OnPreviewEnergyChanged?.Invoke(preview, max);
 }

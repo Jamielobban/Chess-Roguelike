@@ -13,24 +13,34 @@ public class SelectionController : MonoBehaviour
     private Piece _selected;
     private readonly Dictionary<Vector2Int, MoveOption> _legal = new();
 
+    Vector2Int? _lastHover;       // last hovered tile
+    int _lastPreview = int.MinValue; // last preview value we sent
+
     void Awake()
     {
         if (!runtime) runtime = BoardRuntime.Instance;
         if (!builder) builder = runtime ? runtime.builder : FindFirstObjectByType<BoardBuilder2D>();
         if (!turns)   turns   = TurnManager.Instance;
-
         if (!highlighter) highlighter = FindFirstObjectByType<TileHighlighter>();
         if (!inputCtrl)   inputCtrl   = FindFirstObjectByType<TileInputController>();
     }
 
     void OnEnable()
     {
-        if (inputCtrl != null) inputCtrl.OnTileClicked += HandleTileClicked;
+        if (inputCtrl != null)
+        {
+            inputCtrl.OnTileClicked += HandleTileClicked;
+            inputCtrl.OnTileHovered += HandleTileHovered;
+        }
     }
 
     void OnDisable()
     {
-        if (inputCtrl != null) inputCtrl.OnTileClicked -= HandleTileClicked;
+        if (inputCtrl != null)
+        {
+            inputCtrl.OnTileClicked -= HandleTileClicked;
+            inputCtrl.OnTileHovered -= HandleTileHovered;
+        }
     }
 
     void HandleTileClicked(Vector2Int coord, Tile2D tile)
@@ -39,41 +49,45 @@ public class SelectionController : MonoBehaviour
 
         var pieceAt = runtime.GetPiece(coord) as Piece;
 
-        // nothing selected yet → only select current team’s piece
         if (_selected == null)
         {
-            if (pieceAt != null && pieceAt.Team == turns.currentTeam)
-                Select(pieceAt);
+            if (pieceAt != null && pieceAt.Team == turns.currentTeam) Select(pieceAt);
             return;
         }
 
-        // clicked a piece
-        if (pieceAt != null)
+        if (pieceAt != null && pieceAt.Team == turns.currentTeam)
         {
-            // reselect only if same team
-            if (pieceAt.Team == turns.currentTeam)
-                Select(pieceAt);
+            Select(pieceAt);
             return;
         }
 
-        // clicked empty tile → move only if legal & affordable
         if (_legal.TryGetValue(coord, out var opt))
         {
-            bool ok = MoveResolver.TryExecuteMove(_selected, coord, opt.cost, runtime, spendEnergy: true);
-            if (ok)
+            if (MoveResolver.TryExecuteMove(_selected, coord, opt.cost, runtime))
             {
                 var keep = _selected;
                 ClearSelection();
-                Select(keep); // refresh options with new position/energy
-            }
-            else
-            {
-                // optional feedback: not enough energy, etc.
+                Select(keep);
             }
         }
-        else
+    }
+
+     void HandleTileHovered(Vector2Int? coord, Tile2D _)
+    {
+        if (turns == null) return;
+
+        if (_lastHover == coord) return;
+        _lastHover = coord;
+
+        int preview = turns.energy;
+
+        if (_selected != null && coord.HasValue && _legal.TryGetValue(coord.Value, out var opt))
+            preview = Mathf.Clamp(turns.energy - opt.cost, 0, turns.maxEnergyPerTurn);
+
+        if (preview != _lastPreview)
         {
-            // clicked illegal tile → optional: ClearSelection();
+            _lastPreview = preview;
+            GameSignals.RaisePreviewEnergyChanged(preview, turns.maxEnergyPerTurn);
         }
     }
 
@@ -84,10 +98,8 @@ public class SelectionController : MonoBehaviour
         ClearSelection();
         _selected = p;
 
-        // render selected
         highlighter.HighlightSelected(p.GridPos);
 
-        // compute legal moves with costs (rules+mods+tiles)
         _legal.Clear();
         var options = MoveGenerator.GetMoves(p, runtime);
         foreach (var opt in options)
@@ -98,6 +110,9 @@ public class SelectionController : MonoBehaviour
             bool affordable = turns.energy >= opt.cost;
             highlighter.HighlightOption(opt.dest, opt.isCapture, affordable);
         }
+         _lastHover = null; 
+         _lastPreview = int.MinValue;
+        GameSignals.RaisePreviewEnergyChanged(turns.energy, turns.maxEnergyPerTurn);
     }
 
     public void ClearSelection()
@@ -105,16 +120,9 @@ public class SelectionController : MonoBehaviour
         highlighter.ClearAll();
         _legal.Clear();
         _selected = null;
-    }
-
-    // Call this when modifiers change on the selected piece to refresh highlights
-    public void RefreshIfSelected(Piece p)
-    {
-        if (_selected == p)
-        {
-            var keep = _selected;
-            ClearSelection();
-            Select(keep);
-        }
+         _lastHover = null;
+        _lastPreview = int.MinValue;
+        if (turns != null)
+            GameSignals.RaisePreviewEnergyChanged(turns.energy, turns.maxEnergyPerTurn);
     }
 }

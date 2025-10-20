@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1000)]  // <-- ensures this Awake runs very early
+[DefaultExecutionOrder(-1000)]
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance { get; private set; }
@@ -33,6 +33,7 @@ public class TurnManager : MonoBehaviour
         energy = maxEnergyPerTurn;
         OnTurnStarted?.Invoke(currentTeam, energy, maxEnergyPerTurn);
         OnEnergyChanged?.Invoke(energy, maxEnergyPerTurn);
+        GameSignals.RaisePreviewEnergyChanged(energy, maxEnergyPerTurn);
     }
 
     public bool TrySpend(int cost)

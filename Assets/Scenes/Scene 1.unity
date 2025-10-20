@@ -9253,8 +9253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileInputController
   cam: {fileID: 870662191}
-  input: {fileID: 532070454}
   builder: {fileID: 1021582813}
+  input: {fileID: 532070454}
 --- !u!114 &414023745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11409,8 +11409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b09a004e61b49439eeeba5d6491542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyBarUI
-  slider: {fileID: 493299586}
-  label: {fileID: 0}
+  currentSlider: {fileID: 1540099932}
+  previewSlider: {fileID: 493299586}
+  selection: {fileID: 414023747}
 --- !u!1 &493471999
 GameObject:
   m_ObjectHideFlags: 0
@@ -14125,15 +14126,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370223865700591909, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 370223865700591909, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 370223865700591909, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1278736235509536284, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_Color.a
@@ -14245,7 +14246,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4408144352768930172, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_Value
-      value: 0.82
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408144352768930172, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408144352768930172, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6314281503677107666, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_IsActive
@@ -14253,11 +14262,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6675976566340866398, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6675976566340866398, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8869714022689486409, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_Name
@@ -14265,7 +14274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869714022689486409, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24392,7 +24401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4408144352768930172, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_Value
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4408144352768930172, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
       propertyPath: m_MaxValue
@@ -33954,6 +33963,17 @@ RectTransform:
   m_AnchoredPosition: {x: -85.78127, y: 0.06499863}
   m_SizeDelta: {x: 19.15512, y: 21.820501}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1540099932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4408144352768930172, guid: 2c995c49d5349414ebd709e4878376a8, type: 3}
+  m_PrefabInstance: {fileID: 614209466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1540860044
 GameObject:
   m_ObjectHideFlags: 0

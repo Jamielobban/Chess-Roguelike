@@ -23,7 +23,6 @@ public class BoardBuilder2D : MonoBehaviour
             CacheExistingTiles();
     }
 
-    /// <summary>Re-link existing child tiles into the array.</summary>
     public void CacheExistingTiles()
     {
         var found = GetComponentsInChildren<Tile2D>(true);

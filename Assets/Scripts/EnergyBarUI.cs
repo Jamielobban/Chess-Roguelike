@@ -1,30 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
-#if TMP_PRESENT
-using TMPro;
-#endif
 
 public class EnergyBarUI : MonoBehaviour
 {
-    [Header("Refs")]
-    public Slider slider;                 // assign your Slider
-    void Awake()
-    {
-        //if (!slider) slider = GetComponentInChildren<Slider>();
-    }
+    public Slider currentSlider;   // light
+    public Slider previewSlider;   // orange
+
+    int _curMax = 1;
+    int _curEnergy = 0;
+    int _curPreview = 0;
 
     void OnEnable()
     {
-        Debug.Log(TurnManager.Instance);
-        if (TurnManager.Instance != null)
+        var tm = TurnManager.Instance;
+        if (tm != null)
         {
-            Debug.Log("tEST");
-            TurnManager.Instance.OnTurnStarted   += HandleTurnStarted;
-            TurnManager.Instance.OnEnergyChanged += HandleEnergyChanged;
-
-            // initialize immediately if TurnManager already started
-            HandleEnergyChanged(TurnManager.Instance.energy, TurnManager.Instance.maxEnergyPerTurn);
+            tm.OnTurnStarted   += HandleTurn;
+            tm.OnEnergyChanged += HandleEnergy;
+            // init
+            HandleTurn(tm.currentTeam, tm.energy, tm.maxEnergyPerTurn);
         }
+
+        GameSignals.OnPreviewEnergyChanged += HandlePreview;
     }
 
     void OnDisable()
@@ -32,30 +29,45 @@ public class EnergyBarUI : MonoBehaviour
         var tm = TurnManager.Instance;
         if (tm != null)
         {
-            tm.OnTurnStarted   -= HandleTurnStarted;
-            tm.OnEnergyChanged -= HandleEnergyChanged;
+            tm.OnTurnStarted   -= HandleTurn;
+            tm.OnEnergyChanged -= HandleEnergy;
         }
+        GameSignals.OnPreviewEnergyChanged -= HandlePreview;
     }
 
-    void HandleTurnStarted(Team team, int energy, int max)
+    void HandleTurn(Team _, int energy, int max)
     {
-        Debug.Log(max);
-        SetBar(energy, max);
+        _curMax = Mathf.Max(1, max);
+        _curEnergy = Mathf.Clamp(energy, 0, _curMax);
+        _curPreview = _curEnergy;
+        Apply();
     }
 
-    void HandleEnergyChanged(int energy, int max)
+    void HandleEnergy(int energy, int max)
     {
-        Debug.Log(energy);
-        SetBar(energy, max);
+        _curMax = Mathf.Max(1, max);
+        _curEnergy = Mathf.Clamp(energy, 0, _curMax);
+        Apply();
     }
 
-    void SetBar(int energy, int max)
+    void HandlePreview(int preview, int max)
     {
-        if (!slider) return;
-        slider.maxValue = Mathf.Max(1, max);
-        slider.value = Mathf.Clamp(energy, 0, max);
+        _curMax = Mathf.Max(1, max);
+        _curPreview = Mathf.Clamp(preview, 0, _curMax);
+        Apply();
+    }
 
-        //if (label)
-        //    label.text = $"{energy} / {max}";
+    void Apply()
+    {
+        if (currentSlider)
+        {
+            currentSlider.maxValue = _curMax;
+            currentSlider.value = _curEnergy;
+        }
+        if (previewSlider)
+        {
+            previewSlider.maxValue = _curMax;
+            previewSlider.value = _curPreview;
+        }
     }
 }
