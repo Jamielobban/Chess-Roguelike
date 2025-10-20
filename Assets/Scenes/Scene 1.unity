@@ -30579,6 +30579,9 @@ MonoBehaviour:
   blackPawn: {fileID: 11400000, guid: e415f6e912c60b546b9b1217a4eb1f9d, type: 2}
   knightPiece: {fileID: 11400000, guid: 23101a6226b957045b63719b4bdb9f37, type: 2}
   rookPiece: {fileID: 11400000, guid: 747409c510c503048b7b4f1025be5d54, type: 2}
+  bishop: {fileID: 11400000, guid: f7dec72749ad812489962bd3d56e0eb3, type: 2}
+  queen: {fileID: 11400000, guid: 463395df2d9fce046b494eb54eca6db0, type: 2}
+  king: {fileID: 11400000, guid: 7c6e8925eb4f57f4faa082796a8cd077, type: 2}
 --- !u!114 &1367876345
 MonoBehaviour:
   m_ObjectHideFlags: 0
