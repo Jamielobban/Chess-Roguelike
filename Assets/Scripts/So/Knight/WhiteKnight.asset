@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fc159c44669de64f90606c74d4eafb6, type: 3}
-  m_Name: Queen
+  m_Name: WhiteKnight
   m_EditorClassIdentifier: Assembly-CSharp::PieceData
-  displayName: 
-  sprite: {fileID: -9169930197961752557, guid: eb4eb4e6fc2a4d64da08e9a4c0ce50ad, type: 3}
-  tint: {r: 1, g: 1, b: 1, a: 1}
+  displayName: Knight
   team: 0
+  sprite: {fileID: 21300000, guid: 61c8ef033d208574f9d9e7ed524d2c6b, type: 3}
+  tint: {r: 1, g: 1, b: 1, a: 1}
   maxHP: 1
   attack: 1
   moveRules:
-  - {fileID: 11400000, guid: 8df6996f24950a845a0f53867d6ec999, type: 2}
+  - {fileID: 11400000, guid: 3ac7608ddcdcbe94fb320315d0400d1e, type: 2}
   baseModifiers: []
   tags: []

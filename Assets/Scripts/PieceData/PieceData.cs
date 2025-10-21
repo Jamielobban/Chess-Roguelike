@@ -1,3 +1,4 @@
+// PieceData.cs
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,16 +6,16 @@ using UnityEngine;
 public class PieceData : ScriptableObject
 {
     public string displayName;
-    public Sprite sprite;
+    public Team team;              // White or Black
+    public Sprite sprite;          // Use the team-specific sprite here
     public Color tint = Color.white;
-    public Team team = Team.White;
 
-    [Header("Base stats")]
+    [Header("Stats")]
     public int maxHP = 1;
     public int attack = 1;
 
     [Header("Rules")]
     public List<MoveRule> moveRules;
-    public List<Modifier> baseModifiers; // e.g., “LongStride”, “CanPassThroughAllies”
-    public List<string> tags;            // “Undead”, “Fire”, etc.
+    public List<Modifier> baseModifiers;
+    public List<string> tags;
 }

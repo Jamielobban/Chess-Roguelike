@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fc159c44669de64f90606c74d4eafb6, type: 3}
-  m_Name: RookData
+  m_Name: WhitePawn
   m_EditorClassIdentifier: Assembly-CSharp::PieceData
-  displayName: Rook
-  sprite: {fileID: -4896756358611618221, guid: 29a51242897937149b302a38fddfc1a4, type: 3}
+  displayName: Pawn
+  team: 0
+  sprite: {fileID: 21300000, guid: 6a4c3c899bbbea44b95c7df4155b51db, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
   maxHP: 1
   attack: 1
   moveRules:
-  - {fileID: 11400000, guid: 436de2d2d1ff589489e648f348fc8152, type: 2}
+  - {fileID: 11400000, guid: c42ef4c42fe80a243b31097acd8479c1, type: 2}
   baseModifiers: []
   tags: []

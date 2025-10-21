@@ -11411,7 +11411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnergyBarUI
   currentSlider: {fileID: 1540099932}
   previewSlider: {fileID: 493299586}
-  selection: {fileID: 414023747}
 --- !u!1 &493471999
 GameObject:
   m_ObjectHideFlags: 0
@@ -30630,12 +30629,17 @@ MonoBehaviour:
   board: {fileID: 1021582813}
   factory: {fileID: 1367876345}
   whitePawn: {fileID: 11400000, guid: e415f6e912c60b546b9b1217a4eb1f9d, type: 2}
-  blackPawn: {fileID: 11400000, guid: e415f6e912c60b546b9b1217a4eb1f9d, type: 2}
-  knightPiece: {fileID: 11400000, guid: 23101a6226b957045b63719b4bdb9f37, type: 2}
-  rookPiece: {fileID: 11400000, guid: 747409c510c503048b7b4f1025be5d54, type: 2}
-  bishop: {fileID: 11400000, guid: f7dec72749ad812489962bd3d56e0eb3, type: 2}
-  queen: {fileID: 11400000, guid: 463395df2d9fce046b494eb54eca6db0, type: 2}
-  king: {fileID: 11400000, guid: 7c6e8925eb4f57f4faa082796a8cd077, type: 2}
+  whiteKnight: {fileID: 11400000, guid: 23101a6226b957045b63719b4bdb9f37, type: 2}
+  whiteRook: {fileID: 11400000, guid: 747409c510c503048b7b4f1025be5d54, type: 2}
+  whiteBishop: {fileID: 11400000, guid: f7dec72749ad812489962bd3d56e0eb3, type: 2}
+  whiteQueen: {fileID: 11400000, guid: 463395df2d9fce046b494eb54eca6db0, type: 2}
+  whiteKing: {fileID: 11400000, guid: 7c6e8925eb4f57f4faa082796a8cd077, type: 2}
+  blackPawn: {fileID: 11400000, guid: dac84eb1d9fc22a4fb05d1e57e4b46bf, type: 2}
+  blackKnight: {fileID: 11400000, guid: a5095198bb880434ba34bd60d1f6b539, type: 2}
+  blackRook: {fileID: 11400000, guid: ac0eb99d85a4f6b4ab3d97b9f49b8e61, type: 2}
+  blackBishop: {fileID: 11400000, guid: c2693aab1e6a97d44becc04fbc6ddc49, type: 2}
+  blackQueen: {fileID: 11400000, guid: d9c397d597963a640b6273ea7e1a1e83, type: 2}
+  blackKing: {fileID: 11400000, guid: 3db1109a0219008418ddc7037725c62c, type: 2}
 --- !u!114 &1367876345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30649,6 +30653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PieceFactory
   piecePrefab: {fileID: 8073567032735525133, guid: 8025815ac6fcfb3488054ca0df9db4cd, type: 3}
+  board: {fileID: 1481523819}
 --- !u!4 &1367876346
 Transform:
   m_ObjectHideFlags: 0
