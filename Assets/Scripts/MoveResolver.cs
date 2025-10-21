@@ -1,27 +1,19 @@
+// MoveResolver.cs (replace TryExecuteMove body)
 using UnityEngine;
 
 public static class MoveResolver
 {
-    /// <summary>
-    /// Tries to execute a move: checks energy, spends it, fires tile events, captures, and moves.
-    /// Returns true if the move was performed.
-    /// </summary>
     public static bool TryExecuteMove(Piece piece, Vector2Int dest, int cost, BoardRuntime board, bool spendEnergy = true)
     {
         if (piece == null || board == null) return false;
 
-        // Notify start (for intent SFX, previews, etc.)
         GameSignals.RaiseMoveStarted(piece, dest);
 
         // Energy check & spend
         if (spendEnergy)
         {
             var tm = TurnManager.Instance;
-            if (tm == null)
-            {
-                Debug.LogError("MoveResolver: TurnManager.Instance is null.");
-                return false;
-            }
+            if (tm == null) { Debug.LogError("No TurnManager."); return false; }
             if (!tm.TrySpend(cost))
             {
                 GameSignals.RaiseMoveFailedInsufficientEnergy(piece, dest, cost);
@@ -30,26 +22,47 @@ public static class MoveResolver
         }
 
         var from = piece.GridPos;
-        var targetPiece = board.GetPiece(dest) as Piece;
+        var target = board.GetPiece(dest) as Piece;
 
-        // Tile leave/enter hooks (before we actually move)
-        FireTileEvents(piece, board, from, dest);
-
-        // Capture (emit before destruction so listeners can read victim data)
-        if (targetPiece != null && targetPiece.Team != piece.Team)
+        if (target != null && target.Team != piece.Team)
         {
-            GameSignals.RaisePieceCaptured(piece, targetPiece, dest);
-            Object.Destroy(targetPiece.gameObject);
-            board.pieces[dest.x, dest.y] = null;
+            // Attack flow (no counterattack)
+            var outcome = CombatResolver.ResolveAttack(piece, target);
+
+            if (outcome.targetDied)
+            {
+                // remove defender
+                Object.Destroy(target.gameObject);
+                board.pieces[dest.x, dest.y] = null;
+
+                // tile events for moving
+                FireTileEvents(piece, board, from, dest);
+
+                // advance into captured tile
+                board.MovePiece(piece, dest);
+
+                GameSignals.RaisePieceMoved(piece, from, dest, cost);
+                GameSignals.RaiseAttackResolved(piece, dest, true);
+            }
+            else
+            {
+                // target lives: attacker stays in place (no tile enter/leave)
+                GameSignals.RaiseAttackResolved(piece, dest, false);
+            }
+
+            return true;
+        }
+        else if (target == null)
+        {
+            // Plain move (no combat)
+            FireTileEvents(piece, board, from, dest);
+            board.MovePiece(piece, dest);
+            GameSignals.RaisePieceMoved(piece, from, dest, cost);
+            return true;
         }
 
-        // Move on the board (updates grid + transform)
-        board.MovePiece(piece, dest);
-
-        // Final event after state change
-        GameSignals.RaisePieceMoved(piece, from, dest, cost);
-
-        return true;
+        // blocked by ally (shouldn't be in legal set)
+        return false;
     }
 
     static void FireTileEvents(Piece piece, BoardRuntime board, Vector2Int from, Vector2Int to)
@@ -58,11 +71,9 @@ public static class MoveResolver
         var toTile   = board.builder.tiles[to.x, to.y];
 
         if (fromTile?.data?.tileRules != null)
-            foreach (var tr in fromTile.data.tileRules)
-                tr.OnLeave(piece, board, fromTile);
+            foreach (var tr in fromTile.data.tileRules) tr.OnLeave(piece, board, fromTile);
 
         if (toTile?.data?.tileRules != null)
-            foreach (var tr in toTile.data.tileRules)
-                tr.OnEnter(piece, board, toTile);
+            foreach (var tr in toTile.data.tileRules) tr.OnEnter(piece, board, toTile);
     }
 }

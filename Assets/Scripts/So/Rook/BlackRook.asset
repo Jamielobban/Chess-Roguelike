@@ -16,7 +16,7 @@ MonoBehaviour:
   team: 1
   sprite: {fileID: 21300000, guid: 6c87fef7525bc0942b2c27e72123f9af, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
-  maxHP: 1
+  maxHP: 100
   attack: 1
   moveRules:
   - {fileID: 11400000, guid: 436de2d2d1ff589489e648f348fc8152, type: 2}
