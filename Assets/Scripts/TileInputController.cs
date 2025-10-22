@@ -50,7 +50,7 @@ public class TileInputController : MonoBehaviour
 
         var tile = col.GetComponent<Tile2D>();
         if (!tile) return;
-        Debug.Log(tile.coord);
+       // Debug.Log(tile.coord);
 
         if (_lastHover == null || _lastHover.Value != tile.coord)
         {

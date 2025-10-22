@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
 
     public void BeginNewTurn(Team team)
     {
-        Debug.Log(team);
+        //Debug.Log(team);
         currentTeam = team;
         energy = maxEnergyPerTurn;
         OnTurnStarted?.Invoke(currentTeam, energy, maxEnergyPerTurn);
