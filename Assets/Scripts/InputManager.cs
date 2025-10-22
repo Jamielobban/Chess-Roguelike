@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
         _actions = new InputSystem_Actions();
+        Application.targetFrameRate = 144;
     }
 
     void OnEnable()

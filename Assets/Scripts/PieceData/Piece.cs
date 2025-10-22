@@ -150,4 +150,10 @@ public class Piece : MonoBehaviour
     // Convenience
     public bool IsDead => _hp <= 0;
     //public IEnumerable<string> Tags => data?.tags ?? System.Array.Empty<string>();
+
+    public void SetVisible(bool vis)
+    {
+        if (_sr == null) _sr = GetComponent<SpriteRenderer>();
+        if (_sr) _sr.enabled = vis;
+    }
 }
