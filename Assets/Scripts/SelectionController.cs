@@ -103,20 +103,17 @@ public class SelectionController : MonoBehaviour
     }
 
 
-     void HandleTileHovered(Vector2Int? coord, Tile2D _)
+    void HandleTileHovered(Vector2Int? coord, Tile2D _)
     {
         if (turns == null) return;
-
-        // 1) If not hovering a tile, do NOTHING (keep last preview)
-        if (!coord.HasValue) return;
-
-        // 2) Debounce by coord change
         if (_lastHover == coord) return;
         _lastHover = coord;
 
-        // 3) Compute preview only when actually over a tile
+        // NEW – tell highlighter which tile is under the mouse
+        if (highlighter) highlighter.SetHover(coord);
+
         int preview = turns.energy;
-        if (_selected != null && _legal.TryGetValue(coord.Value, out var opt))
+        if (_selected != null && coord.HasValue && _legal.TryGetValue(coord.Value, out var opt))
             preview = Mathf.Clamp(turns.energy - opt.cost, 0, turns.maxEnergyPerTurn);
 
         if (preview != _lastPreview)
