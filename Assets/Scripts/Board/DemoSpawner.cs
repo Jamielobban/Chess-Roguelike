@@ -26,6 +26,6 @@ public class DemoSpawner : MonoBehaviour
         factory.Spawn(blackRook, new Vector2Int(2, 2));
         factory.Spawn(whiteRook, new Vector2Int(3, 7));
         factory.Spawn(whiteBishop, new Vector2Int(2, 7));
-        factory.Spawn(blackQueen, new Vector2Int(1, 7));        
+        //factory.Spawn(blackQueen, new Vector2Int(1, 7));        
     }
 }

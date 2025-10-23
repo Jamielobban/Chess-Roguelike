@@ -5,7 +5,7 @@ public class GameSignalLogger : MonoBehaviour
     void OnEnable()
     {
         // Movement / Energy
-        GameSignals.OnMoveStarted                     += HandleMoveStarted;
+        /* GameSignals.OnMoveStarted                     += HandleMoveStarted;
         GameSignals.OnMoveFailedInsufficientEnergy    += HandleMoveFailedEnergy;
         GameSignals.OnPieceCaptured                   += HandlePieceCaptured;
         GameSignals.OnPieceMoved                      += HandlePieceMoved;
@@ -20,13 +20,13 @@ public class GameSignalLogger : MonoBehaviour
         // HP / XP / Level
         GameSignals.OnHPChanged                       += HandleHPChanged;
         GameSignals.OnXPChanged                       += HandleXPChanged;
-        GameSignals.OnLevelUp                         += HandleLevelUp;
+        GameSignals.OnLevelUp                         += HandleLevelUp; */
     }
 
     void OnDisable()
     {
         // IMPORTANT: always mirror the += / -= pairs
-        GameSignals.OnMoveStarted                     -= HandleMoveStarted;
+        /* GameSignals.OnMoveStarted                     -= HandleMoveStarted;
         GameSignals.OnMoveFailedInsufficientEnergy    -= HandleMoveFailedEnergy;
         GameSignals.OnPieceCaptured                   -= HandlePieceCaptured;
         GameSignals.OnPieceMoved                      -= HandlePieceMoved;
@@ -39,7 +39,7 @@ public class GameSignalLogger : MonoBehaviour
 
         GameSignals.OnHPChanged                       -= HandleHPChanged;
         GameSignals.OnXPChanged                       -= HandleXPChanged;
-        GameSignals.OnLevelUp                         -= HandleLevelUp;
+        GameSignals.OnLevelUp                         -= HandleLevelUp; */
     }
 
     // -------- Handlers --------

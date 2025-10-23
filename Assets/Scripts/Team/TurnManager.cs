@@ -50,6 +50,7 @@ public class TurnManager : MonoBehaviour
         var ended = currentTeam;
         currentTeam = (currentTeam == Team.White) ? Team.Black : Team.White;
         OnTurnEnded?.Invoke(ended);
+        Debug.Log("Turn is now ->> " + currentTeam); 
         BeginNewTurn(currentTeam);
     }
 }
