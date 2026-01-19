@@ -1,68 +1,60 @@
-# Chess-Roguelike
-Chess Roguelike Prototype
+# Chess Roguelike Prototype
 
-A prototype chess-inspired roguelike developed for a client to explore hybrid gameplay between traditional chess mechanics and roguelike systems.
+This project is a prototype chess roguelike developed for a client. It explores extending standard chess rules with roguelike-style mechanics such as piece abilities, rule modifiers, and experimental systems.
 
-The project focuses on systems design and extensibility rather than production polish.
+---
 
-Overview
+## Features
 
-The goal was to take standard chess rules and layer on:
+- Chess board and turn-based flow
+- Standard movement and capture rules
+- Data-driven piece definitions
+- Piece abilities and gameplay modifiers
+- Rule mutations that affect movement, turns, or captures
+- Mouse-based piece selection and movement
+- Event-based communication between systems
+- Basic AI logic for enemy-controlled pieces
 
-Piece abilities and modifiers
+---
 
-Rule changes that affect movement, turns, and captures
+## Requirements
 
-Non-standard encounters and win conditions
+- Unity
+- C#
 
-Features
+---
 
-Chess-based board and movement validation
+## How to Use
 
-Data-driven piece definitions
+1. Open the project in Unity
+2. Load the main prototype scene
+3. Enter Play Mode
+4. Select and move pieces using the mouse
 
-Modular rule and gameplay modifiers
+---
 
-Piece selection, dragging, and move resolution
+## File Overview
 
-Basic AI hooks for enemy behavior
+- `Board/` – Board state and tiles
+- `ChessRules/` – Movement and rule validation
+- `PieceData/` – Piece definitions and abilities
+- `Modifier/` – Rule and gameplay modifiers
+- `AI/` – Enemy logic
+- `Input/` – Selection and drag handling
+- `Signals/` – Game events and messaging
 
-Event/signal-based architecture
+---
 
-Project Structure
-Assets/
- └── Scripts/
-     ├── Board/
-     ├── ChessRules/
-     ├── PieceData/
-     ├── Modifier/
-     ├── AI/
-     ├── Input/
-     └── Signals/
+## Notes
 
+- Prototype-level implementation
+- Placeholder assets
+- Focused on system design and iteration
 
-The code is structured to support rapid iteration and easy extension.
+---
 
-Technology
+## License
 
-Unity
+This repository contains prototype code only.
 
-C#
-
-Status
-
-Prototype / design exploration.
-Not intended as a finished product.
-
-Notes
-
-Placeholder assets
-
-Systems-first implementation
-
-Designed for iteration and experimentation
-
-License
-
-Prototype code only.
-Usage subject to the original client agreement.
+Usage and rights are subject to the original client agreement.
